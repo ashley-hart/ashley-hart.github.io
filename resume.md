@@ -22,7 +22,7 @@ published: true
 </object>
 -->
 
-*Note: Living Resume & CV coming soon!*
+*Note: This page is still under construction. 
 
 ## Experience
 **May 2022 - August 2022**
@@ -53,43 +53,44 @@ published: true
 
 ## Education
 
-**University of Florida** &emsp;&emsp;			Gainesville, Florida
-*Doctor of Philosophy in Computer Science*			August 2022 - Present
-- Researched artificial intelligence in the Human Experience Research Lab under the advisement of Dr. Juan Gilbert
+**University of Florida** &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Gainesville, Florida<br/>
+*Doctor of Philosophy in Computer Science*			August 2022 - Present<br/>
+- Researched artificial intelligence in the Human Experience Research Lab under the advisement of Dr. Juan Gilber.<br/>
 GPA: TBD
 
-**University of Central Florida**
-*Bachelor of Science in Computer Science*			August 2018 - Spring 2022
-GPA: 3.737
+**University of Central Florida** &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Orlando, Florida<br/>
+*Bachelor of Science in Computer Science* &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; August 2018 - Spring 2022<br/>
+GPA: 3.737<br/>
 
 ## Awards
-GEM Fellow 							*Awarded: Spring 2022*
-McKnight Doctoral Fellow			*Awarded: Summer 2022*
-Ronald E. McNair Scholar 			*Awarded: Fall 2020*
-NACME Scholar (2020 - 2021)			*Awarded: Fall 2020*
+GEM Fellow &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; *Awarded: Spring 2022*<br/>
+McKnight Doctoral Fellow &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;*Awarded: Summer 2022*<br/>
+Ronald E. McNair Scholar &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; *Awarded: Fall 2020*<br/>
+NACME Scholar (2020 - 2021) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;*Awarded: Fall 2020*<br/>
 
 ## Leadership & Involvement 
-Special Interet Group for Algorithims & Computer Theory
-President & Vice President				November 2020 - May 2022
+Special Interet Group for Algorithims & Computer Theory<br/>
+President & Vice President				November 2020 - May 2022<br/>
 
 ## Projects 
-**RecycPal**							January 2021 - Present
+**RecycPal**							January 2021 - Present<br/>
 - Developed a machine learning application that classifies objects and provides
-information on how to properly dispose of them.
-- Third place winner at DeltaHacks 2022.
+information on how to properly dispose of them.<br/>
+- Third place winner at DeltaHacks 2022.<br/>
 
-**PharmEasy**							November 2021 – Present
+**PharmEasy**							November 2021 – Present<br/>
 - Developed an application that helps patients order, refill, and receive their
-prescription medications.
-- Winner of the Synopsys prize at KnightHacks 2021.
+prescription medications.<br/>
+- Winner of the Synopsys prize at KnightHacks 2021.<br/>
 
-**LDPC Decoder**						June 2021 – July 2021
+**LDPC Decoder**						June 2021 – July 2021 <br/>
 - Developed a tool that operates on graphs to solve LDPC codes.
-Insomnia January 2021 – May 2021
+- 
+**Insomnia**                            January 2021 – May 2021<br/>
 - Contributed as the art director, project manager, and enemy artificial intelligence
-developer for a 2D platformer Unity game.
+developer for a 2D platformer Unity game.<br/>
 
-### Contact me
+### Contact Me
 
 E-mail: [ashley.hart@ufl.edu](mailto:ashley.hart@ufl.edu)
 LinkedIn: [Click here.](https://www.linkedin.com/in/ashley-b-hart/)
