@@ -7,7 +7,6 @@ published: true
 
 Test
 
-ashley-hart.github.io/assets/pdf/Resume_Website_Ver.pdf
 
 <embed src="ashley-hart.github.io/assets/pdf/Resume_Website_Ver.pdf" width="500" height="375" 
  type="application/pdf">
