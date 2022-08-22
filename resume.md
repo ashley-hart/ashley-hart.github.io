@@ -16,7 +16,7 @@ published: true
 </object>
 -->
 
-<object data="http://ashley-hart.github.io\assets\pdf\Resume_Website_Ver.pdf" type="application\pdf" width="700px" height="700px">
+<object data="http://ashley-hart.github.io\assets\pdf\Resume_Website_Ver.pdf" type="application\pdf" width="100%" height="100%">
     <embed src="http://ashley-hart.github.io\assets\pdf\Resume_Website_Ver.pdf">
 </object>
 
