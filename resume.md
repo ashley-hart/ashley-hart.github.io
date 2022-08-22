@@ -2,15 +2,16 @@
 layout: page
 title: Resume
 permalink: /resume/
+published: true
 ---
 
 Test
 
-{{% for file in site.static_files %}}
-    {{% if file.pdf %}}
-        <img src="{{file.path}}" alt="{file.name}">
-    {{% endif %}}
-{{% endfor %}}
+ashley-hart.github.io/assets/pdf/Resume_Website_Ver.pdf
+
+<embed src="ashley-hart.github.io/assets/pdf/Resume_Website_Ver.pdf" width="500" height="375" 
+ type="application/pdf">
+
 
 *Note: Living Resume & CV coming soon!*
 
