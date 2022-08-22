@@ -5,12 +5,10 @@ permalink: /resume/
 published: true
 ---
 
-Test
+**Test**
 
-
-<embed src="ashley-hart.github.io/assets/pdf/Resume_Website_Ver.pdf" width="500" height="375" 
+<embed src="assets/pdf/Resume_Website_Ver.pdf" width="500" height="375" 
  type="application/pdf">
-
 
 *Note: Living Resume & CV coming soon!*
 
