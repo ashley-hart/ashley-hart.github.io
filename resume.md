@@ -4,6 +4,8 @@ title: Resume
 permalink: /resume/
 ---
 
+Test
+
 {{% for file in site.static_files %}}
     {% if file.pdf %}
         <img src="{{file.path}}" alt="{file.name}">
