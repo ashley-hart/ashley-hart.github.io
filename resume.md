@@ -16,8 +16,8 @@ published: true
 </object>
 -->
 
-<object data="assets\pdf\Resume_Website_Ver.pdf" type="application\pdf" width="700px" height="700px">
-    <embed src="assets\pdf\Resume_Website_Ver.pdf">
+<object data="http://ashley-hart.github.io\assets\pdf\Resume_Website_Ver.pdf" type="application\pdf" width="700px" height="700px">
+    <embed src="http://ashley-hart.github.io\assets\pdf\Resume_Website_Ver.pdf">
 </object>
 
 *Note: Living Resume & CV coming soon!*
