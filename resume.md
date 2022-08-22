@@ -5,6 +5,7 @@ permalink: /resume/
 published: true
 ---
 
+<!--
 <object data="ashley-hart.github.io/assets/pdf/Resume_Website_Ver.pdf" type="application/pdf" width="750px" height="750px">
     <embed src="ashley-hart.github.io/assets/pdf/Resume_Website_Ver.pdf" type="application/pdf">
         <p>This browser does not support PDFs. Please download the PDF to view it: 
