@@ -5,9 +5,6 @@ permalink: /resume/
 published: true
 ---
 
-**Test**
-
-<!--
 <object data="ashley-hart.github.io/assets/pdf/Resume_Website_Ver.pdf" type="application/pdf" width="750px" height="750px">
     <embed src="ashley-hart.github.io/assets/pdf/Resume_Website_Ver.pdf" type="application/pdf">
         <p>This browser does not support PDFs. Please download the PDF to view it: 
@@ -22,7 +19,7 @@ published: true
 </object>
 -->
 
-*Note: This page is still under construction. 
+*Note: This page is still under construction.*
 
 ## Experience
 **May 2022 - August 2022**
