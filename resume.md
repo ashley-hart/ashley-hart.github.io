@@ -26,7 +26,7 @@ published: true
 IMPORTANT: Be sure to keep this link updated!
 -->
 
-A downloadable version of my resume can be found [here.](https://drive.google.com/file/d/1hbGM5I8nhqd9LaMT__XG-xt3cQwgJXWi/view?usp=sharing)
+_Note: A downloadable version of my resume can be found [here.](https://drive.google.com/file/d/1hbGM5I8nhqd9LaMT__XG-xt3cQwgJXWi/view?usp=sharing)_
 
 ## Experience
 **May 2022 - August 2022**
