@@ -1,0 +1,14 @@
+# Navigation:
+main:
+  - title: "About"
+    url: /about/
+  - title: "Blog"
+    url: /blog/
+  - title: "Research"
+    url: /research/
+  - title: "CV / Resume"
+    url: /cv/
+  # - title: "Games"
+  #   url: /games/
+  - title: "Contact"
+    url: /contact/

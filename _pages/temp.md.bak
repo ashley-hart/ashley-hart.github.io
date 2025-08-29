@@ -1,0 +1,27 @@
+---
+layout: home
+title: "Welcome"
+header:
+#   image: /assets/images/strip.png
+  overlay_image: /assets/images/strip.png
+  overlay_color: "#333"
+#   overlay_filter: rgba(67, 0, 0, 0.5)
+  overlay_filter: linear-gradient(rgba(255, 0, 0, 0.5), rgba(0, 255, 255, 0.5))
+  image_description: "A description of the image"
+  caption: "Photo credit: MacOS"
+  actions:
+    - label: "More Info"
+      url: "https://unsplash.com"
+    - label: "Foo Button"
+      url: "#foo"
+    - label: "Bar Button"
+      url: "#bar"
+permalink: /
+---
+
+This is the home page.
+
+[ADD INTRODUCTORY PARAGRAPH]
+
+[ADD RESEARCH INTERESTS]
+
