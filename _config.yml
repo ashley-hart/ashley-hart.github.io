@@ -14,6 +14,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-include-cache
 
 minimal_mistakes_skin: "dark" # "default", "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
