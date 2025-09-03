@@ -15,7 +15,7 @@ I’m a PhD student and AI researcher who develops games and explores procedural
 ### Featured Links
 - [About Me](/about/)
 - [Research](/research/)
-- [Games](/games/)
+<!-- - [Games](/games/) -->
 - [Blog](/blog/)
 - [Resume](/resume/)
 
