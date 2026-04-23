@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ashley Hart — Personal Website</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Design tokens ───────────────────────────────────────────── */
+    :root {
+      --bg:        #0e0e0e;
+      --text:      #f0ede8;   /* primary — contrast ~17:1 ✓ */
+      --muted:     #888580;   /* secondary — contrast ~5.2:1 ✓ */
+      --dim:       #5a5754;   /* tertiary — contrast ~4.6:1 ✓ */
+      --accent:    #d4c9b8;
+      --gap:       clamp(1rem, 4vw, 2.5rem);
+    }
+
+    /* ── Reset ───────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Base ────────────────────────────────────────────────────── */
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: var(--gap);
+
+      /* subtle noise grain */
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* ── Skip-nav (accessibility) ────────────────────────────────── */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      background: var(--text);
+      color: var(--bg);
+      padding: 0.5rem 1rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      border-radius: 0 0 4px 4px;
+      z-index: 100;
+      text-decoration: none;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ── Layout ──────────────────────────────────────────────────── */
+    .card {
+      max-width: 480px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--gap);
+      text-align: center;
+    }
+
+    /* ── Header label ────────────────────────────────────────────── */
+    .label {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.4rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--dim);
+      border: 1px solid var(--dim);
+      padding: 0.3rem 0.75rem;
+      border-radius: 2px;
+    }
+
+    /* ── Name ────────────────────────────────────────────────────── */
+    h1 {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(2.5rem, 5vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--text);
+    }
+
+    /* ── Message ─────────────────────────────────────────────────── */
+    .message {
+      font-size: clamp(1.4rem, 2.5vw, 1rem);
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 340px;
+    }
+
+    hr {
+      width: 100%;
+      border: none;
+      border-top: 1px solid var(--dim);
+    }
+
+    /* ── Sprite placeholder ──────────────────────────────────────── */
+    .sprite-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .sprite-placeholder {
+      width: 64px;
+      height: 64px;
+      border: 2px dashed var(--dim);
+      border-radius: 2px;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-family: 'Space Mono', monospace;
+      font-size: 1.4rem;
+      position: relative;
+
+      animation: float 2.8s ease-in-out infinite;
+      image-rendering: pixelated;
+    }
+
+    .sprite-placeholder::before {
+      content: '🦺';
+      font-size: 0.75rem;
+      position: absolute;
+      top: -1px;
+      right: -1px;
+      background: var(--bg);
+      line-height: 1;
+      padding: 1px;
+    }
+
+    .sprite-caption {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--dim);
+      letter-spacing: 0.08em;
+    }
+
+    @keyframes float {
+      0%   { transform: translateY(0px); }
+      50%  { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .footer-note {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.5rem;
+      color: var(--dim);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Focus styles (WCAG 2.4.11) ─────────────────────────────── */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* ── Reduced motion ──────────────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      .sprite-placeholder { animation: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <main id="main">
+    <div class="card" role="region" aria-label="Site status">
+
+      <span class="label" aria-hidden="true">// under construction</span>
+
+      <h1>Ashley Hart</h1>
+
+      <p class="message">
+        My personal website is currently being rebuilt.<br>
+        Check back soon — something new is on its way!
+      </p>
+      
+    <hr aria-hidden="true">   <!-- This is the line. -->
+      
+      <p class="message">
+        <i> </i>For professional inquires, please email me at<br>
+        email me at ashley.hart@ufl.edu.</i>
+      </p>
+
+      <div class="sprite-wrap">
+        <!--
+          Replace this placeholder with your sprite once it's ready:
+          <img
+            src="assets/mini-me.png"
+            alt="Pixel art of Ashley wearing a construction hat"
+            width="64"
+            height="64"
+            class="sprite-placeholder"
+          />
+        -->
+        <!-- <div
+          class="sprite-placeholder"
+          role="img"
+          aria-label="Pixel art sprite placeholder — construction mini-me coming soon"
+        >
+          👷
+        </div>
+        <span class="sprite-caption" aria-hidden="true">[ sprite coming soon ]</span> -->
+       </div> 
+
+      <p class="footer-note" aria-label="Copyright Ashley Hart">
+        &copy; <span id="year"></span> Ashley Hart
+      </p>
+
+    </div>
+  </main>
+
+  <script>
+    // Keep the year current without hardcoding it
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
