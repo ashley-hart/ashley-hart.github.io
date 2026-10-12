@@ -76,22 +76,22 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
     margin-right: auto;
     color: var(--text);
     text-decoration: none;
-    font-family: var(--font-serif);
+    font-family: var(--font-pixel);
     font-weight: 600;
-    font-size: 1.15rem;
+    font-size: 1.3rem;
   }
   .brand-mark {
     display: inline-grid;
     place-items: center;
     width: 2.3rem;
     height: 2.3rem;
-    border-radius: 10px;
+    border-radius: 4px;
     background: var(--primary);
     color: var(--primary-contrast);
-    font-family: var(--font-sans);
-    font-size: 0.85rem;
-    font-weight: 800;
-    letter-spacing: 0.04em;
+    font-family: var(--font-pixel);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
     box-shadow: 3px 3px 0 var(--accent);
   }
   .nav-list {
@@ -104,18 +104,18 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
   .nav-list a {
     display: block;
     padding: 0.45rem 0.75rem;
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     color: var(--text);
     text-decoration: none;
-    font-weight: 500;
-    font-size: 0.97rem;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
   }
   .nav-list a:hover { background: var(--tint); color: var(--primary); }
   .nav-list a[aria-current='page'] {
     background: var(--tint);
     color: var(--primary);
-    font-weight: 700;
-    box-shadow: inset 0 -2px 0 var(--accent);
+    font-weight: 600;
+    box-shadow: inset 0 -3px 0 var(--accent);
   }
   .menu-toggle {
     display: none;
@@ -124,7 +124,7 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
     padding: 0;
     place-items: center;
     border: 1px solid var(--border);
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     background: var(--surface);
     color: var(--text);
     cursor: pointer;

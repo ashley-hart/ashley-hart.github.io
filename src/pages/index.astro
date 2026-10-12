@@ -26,7 +26,7 @@ const courses = teaching.filter((t) => t.data.kind === 'teaching');
     <div class="container hero-grid">
       <div class="hero-text">
         <p class="eyebrow">{site.title}</p>
-        <h1>Hi, I'm Ashley.</h1>
+        <h1>Hi, I'm Ashley<span class="cursor" aria-hidden="true">_</span></h1>
         <p class="lede">
           I am a Computer Science Ph.D. student at the <strong>{site.affiliation}</strong>, advised by{' '}
           {site.advisor} in the {site.lab}. I study how artificial intelligence can generate, simulate, and enrich
@@ -182,7 +182,8 @@ const courses = teaching.filter((t) => t.data.kind === 'teaching');
     gap: clamp(2rem, 5vw, 4.5rem);
     align-items: center;
   }
-  .hero h1 { font-size: clamp(2.5rem, 1.8rem + 3vw, 3.8rem); margin-bottom: 0.4em; }
+  .hero h1 { font-size: clamp(2.6rem, 1.8rem + 3.4vw, 4.2rem); margin-bottom: 0.35em; line-height: 1.1; }
+  .cursor { color: var(--accent); margin-left: 0.05em; }
   .hero .lede { color: var(--text); font-size: clamp(1.1rem, 1rem + 0.4vw, 1.25rem); }
   .hero-text > p:not(.eyebrow):not(.lede) { color: var(--muted); }
   .interests { margin: 1.25rem 0 1.75rem; }
@@ -193,16 +194,15 @@ const courses = teaching.filter((t) => t.data.kind === 'teaching');
     content: '';
     position: absolute;
     inset: 1.25rem -1.25rem -1.25rem 1.25rem;
-    border-radius: 24px;
+    border-radius: var(--radius);
     background: var(--secondary);
     z-index: -1;
   }
   .portrait::after {
     content: '';
     position: absolute;
-    width: 5rem; height: 5rem;
-    left: -1.25rem; top: -1.25rem;
-    border-radius: 50%;
+    width: 3.5rem; height: 3.5rem;
+    left: -1rem; top: -1rem;
     background: var(--accent);
     z-index: -1;
   }
@@ -211,8 +211,7 @@ const courses = teaching.filter((t) => t.data.kind === 'teaching');
     aspect-ratio: 4 / 5;
     object-fit: cover;
     object-position: 50% 30%;
-    border-radius: 24px;
-    box-shadow: var(--shadow);
+    border-radius: var(--radius);
   }
   .portrait { isolation: isolate; }
 
@@ -227,9 +226,10 @@ const courses = teaching.filter((t) => t.data.kind === 'teaching');
   }
   .kind {
     margin: 0 0 0.4rem;
+    font-family: var(--font-mono);
     font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
+    font-weight: 600;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--accent-ink);
   }
@@ -246,7 +246,8 @@ const courses = teaching.filter((t) => t.data.kind === 'teaching');
     background: var(--primary);
     color: var(--primary-contrast);
   }
-  .cv-band h2 { margin-bottom: 0.3rem; }
+  .cv-band { box-shadow: 6px 6px 0 var(--accent); }
+  .cv-band h2 { margin-bottom: 0.3rem; font-family: var(--font-pixel); font-weight: 600; letter-spacing: 0; }
   .cv-band p { margin: 0; opacity: 0.92; }
   .cv-band .btn { background: var(--primary-contrast); color: var(--primary); border-color: var(--primary-contrast); }
   .cv-band .btn--ghost { background: transparent; color: var(--primary-contrast); }

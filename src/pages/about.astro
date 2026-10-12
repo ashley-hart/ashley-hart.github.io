@@ -140,9 +140,9 @@ const awards = (await getVisible('awards')).sort(byYearDesc);
     padding-bottom: 3rem;
   }
   .profile { position: sticky; top: 5.5rem; display: grid; gap: 1rem; }
-  .profile :global(img) { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow); }
+  .profile :global(img) { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius); box-shadow: 6px 6px 0 var(--secondary); }
   .profile p { margin-bottom: 0.75rem; font-size: 0.97rem; }
-  .profile .name { font-family: var(--font-serif); font-weight: 600; font-size: 1.25rem; margin-bottom: 0.25rem; }
+  .profile .name { font-family: var(--font-pixel); font-weight: 600; font-size: 1.35rem; margin-bottom: 0.25rem; }
   .profile .btn { margin-top: 1rem; width: 100%; }
   .prose { max-width: var(--prose); }
   .prose .lede { color: var(--text); }
