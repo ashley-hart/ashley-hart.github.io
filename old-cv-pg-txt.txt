@@ -1,0 +1,67 @@
+        <section class="cv-header">
+            <h1>Ashley Hart</h1>
+            <p>PhD Student • AI Researcher • Procedural Content Generation</p>
+            <p>
+                <a href="mailto:your-email@example.com">your-email@example.com</a> |
+                <a href="#">GitHub</a> |
+                <a href="#">Google Scholar</a>
+            </p>
+        </section>
+
+        <section class="cv-section">
+            <h2>Education</h2>
+            <div class="cv-item">
+                <h3>PhD in Computer Science</h3>
+                <p>University Name — Expected 2027</p>
+                <p>Focus: AI, Procedural Content Generation, LLMs</p>
+            </div>
+
+            <div class="cv-item">
+                <h3>MS in Computer Science</h3>
+                <p>University Name — 2025</p>
+            </div>
+        </section>
+
+        <section class="cv-section">
+            <h2>Research Interests</h2>
+            <p>
+                Procedural Content Generation, Large Language Models, 
+                Human-AI Collaboration, Game Development, Generative Systems
+            </p>
+        </section>
+
+        <section class="cv-section">
+            <h2>Publications</h2>
+            <div class="cv-item">
+                <p><strong>Paper Title</strong> — Conference/Journal, Year</p>
+                <p>Short description or contribution.</p>
+            </div>
+        </section>
+
+        <section class="cv-section">
+            <h2>Projects</h2>
+            <div class="cv-item">
+                <h3>LLM-driven ASCII World Generator</h3>
+                <p>
+                    Multi-agent system using LLMs to generate structured parameters 
+                    for procedural world generation.
+                </p>
+            </div>
+        </section>
+
+        <section class="cv-section">
+            <h2>Skills</h2>
+            <p>
+                Languages: Python, JavaScript, C++<br>
+                Tools: Git, Unity, AutoGen<br>
+                Areas: Machine Learning, Game Development
+            </p>
+        </section>
+
+        <section class="cv-section">
+            <h2>Experience</h2>
+            <div class="cv-item">
+                <h3>Research Intern</h3>
+                <p>Company Name — Summer 2025</p>
+                <p>Worked on AI/ML systems and research prototypes.</p>
+            </div>

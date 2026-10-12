@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — Ashley Hart</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <img class="mini-avatar" src="../assets/images/150x75_placeholder.svg">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../cv.html">CV</a></li>
+                <li><a href="./">Blog</a></li>
+                <!-- <li><a href="games/index.html">Games</a></li> -->
+                <!-- <li><a href="#">Contact</a></li> -->
+            </ul>
+            <!-- <button class="theme-button" id="theme-toggle" aria-label="Switch to light mode">☀️</button> -->
+        </nav>
+    </header>
+
+    <main>
+        <!-- <section class="blog-listing"> -->
+        <section class="center">
+            <h1>Blog</h1>
+            <p>TODO: do some research on RSS feeds.</p>
+
+            <article class="blog-card">
+                <h2><a href="posts/post.html">Post Title Here</a></h2>
+                <time datetime="2026-05-04">May 4, 2026</time>
+                <p>A short description or excerpt of the post goes here.</p>
+            </article>
+
+            <article class="blog-card">
+                <h2><a href="posts/post.html">Another Post Title</a></h2>
+                <time datetime="2026-05-04">May 4, 2026</time>
+                <p>A short description or excerpt of the post goes here.</p>
+            </article>
+
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p class="footer-note" aria-label="Copyright Ashley Hart">
+            &copy; <span id="year"></span> Ashley Hart
+        </p>
+    </footer>
+
+    <script>
+        // Keep the year current without hardcoding it
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

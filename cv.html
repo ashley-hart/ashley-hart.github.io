@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashley Hart | CV</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <img class="mini-avatar" src="assets/images/150x75_placeholder.svg">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="cv.html">CV</a></li>
+                <li><a href="blog/index.html">Blog</a></li>
+                <!-- <li><a href="games/index.html">Games</a></li> -->
+                <!-- <li><a href="#">Contact</a></li> -->
+            </ul>
+            <!-- <button class="theme-button" id="theme-toggle" aria-label="Switch to light mode">☀️</button> -->
+        </nav>
+    </header>
+
+    <main class="cv-container">
+        <section> 
+            <div class="center">
+                <h1>CV</h1>
+                <p style="text-align: center;">
+                    Below is my CV. If you'd like to contact me, you can reach out to me at <a href="mailto:ashley.hart@ufl.edu">ashley.hart@ufl.edu</a>.
+                </p>
+                <div class="pdf-display-window">    
+                    <iframe tile="PDF of Ashley's CV" height="1024" width="720" src="assets/pdf/cv-spring-26.pdf" frameborder="0" allow="fullscreen" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p class="footer-note" aria-label="Copyright Ashley Hart">
+            &copy; <span id="year"></span> Ashley Hart
+        </p>
+    </footer>
+
+    <script>
+        // Keep the year current without hardcoding it
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+
+</html>

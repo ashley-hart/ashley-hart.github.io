@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me — Ashley Hart</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <header>
+         <nav class="navbar">
+            <img class="mini-avatar" src="assets/images/150x75_placeholder.svg">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="cv.html">CV</a></li>
+                <li><a href="blog/index.html">Blog</a></li>
+                <!-- <li><a href="games/index.html">Games</a></li> -->
+                <!-- <li><a href="#">Contact</a></li> -->
+            </ul>
+            <!-- <button class="theme-button" id="theme-toggle" aria-label="Switch to light mode">☀️</button> -->
+        </nav>
+    </header>
+
+    <main>
+        <section class="center">
+            <h1>About Me</h1>
+            <img class="about-me-img" src="assets/images/temp.jpg" alt="A photo of Ashley Hart">
+            <div class="about-body-text">
+                <p>
+                    Ashley Hart is a fifth-year Computer Science Ph.D. student at the University of Florida. She
+                    advised by
+                    Dr. Eric Ragan and a member of the Interactive Data and Immersive Environments (INDIE) Lab. She is
+                    an
+                    alumnus of the University of Central Florida and a recipient of the GenNEXT, McKnight, and GEM
+                    Fellowships. Ashley also collaborates with Dr. Julian Togelius and his students in the Games
+                    Innovation Lab at NYU to advance the state of games, artificial intelligence and procedural content generation research.
+                    She has interned at RTX and Aptima Incorporated in data science, software eningeering and
+                    AI engineering capacities.
+                </p>
+
+                <p>
+                    Her research interests include artificial intelligence, games and simulations, culturally relevant
+                    computing, and promoting technical literacy in underserved communities. Ashley's multifaceted
+                    interests,
+                    longstanding record of professionalism and excellence, and her deep commitment to supporting and
+                    serving
+                    others have spurred her stunning career.
+                </p>
+
+                <p>
+                    Ashley's mission is to be a force for positive change in the lives of others, especially
+                    up-and-coming
+                    youth. She is deeply committed to mentorship and community service and views her Ph.D. studies as a
+                    springboard for a meaningful career dedicated to impact and service.
+                </p>
+
+                <p>
+                    In June 2025, Ashley was nominated for and recognized as the Mentor of the Year by the National
+                    Science
+                    & Technology Medals Foundation. She continues to serve as a mentor both at UF and in the NSTMF's
+                    inSTEM
+                    program, supporting scholars at UF and beyond.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p class="footer-note" aria-label="Copyright Ashley Hart">
+            &copy; <span id="year"></span> Ashley Hart
+        </p>
+    </footer>
+
+    <script>
+        // Keep the year current without hardcoding it
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

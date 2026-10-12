@@ -3,10 +3,9 @@ layout: single
 title: "About Me"
 permalink: /about/
 ---
-Ashley Hart is a fourth-year Computer Science Ph.D. student  at the University of Florida under the advisement of Dr. Juan E. Gilbert. She is also a member of the Computing for Social Good Lab at the University of Florida. She is an alumnus of the University of Central Florida and a recipient of the GenNEXT, McKnight, and GEM Fellowships. She is also an AI Engineering intern at Aptima Inc., where she works on evaluating AI systems. 
+Ashley Hart is a fourth-year Computer Science Ph.D. student  at the University of Florida. She advised by Dr. Eric Ragan and a member of the Interactive Data and Immersive Environments (INDIE) Lab. She is an alumnus of the University of Central Florida and a recipient of the GenNEXT, McKnight, and GEM Fellowships. She has interned at RTX and Aptima Incorporated in data science, software eningeering and AI engineering capacities.
 
 ![Ashley Hart](/assets/images/me-aug-2025.jpg){: style="display: block; margin: 0 auto;" width="400px" }
-
 
 Her research interests include artificial intelligence, games and simulations, culturally relevant computing, and promoting technical literacy in underserved communities. Ashley's multifaceted interests, longstanding record of professionalism and excellence, and her deep commitment to supporting and serving others have spurred her stunning career. 
 
