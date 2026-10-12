@@ -107,15 +107,15 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
     border-radius: var(--radius-pill);
     color: var(--text);
     text-decoration: none;
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
+    font-weight: 500;
+    font-size: 0.97rem;
   }
   .nav-list a:hover { background: var(--tint); color: var(--primary); }
   .nav-list a[aria-current='page'] {
     background: var(--tint);
     color: var(--primary);
     font-weight: 600;
-    box-shadow: inset 0 -3px 0 var(--accent);
+    box-shadow: inset 0 -2px 0 var(--accent);
   }
   .menu-toggle {
     display: none;

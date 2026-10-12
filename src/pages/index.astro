@@ -26,7 +26,7 @@ const courses = teaching.filter((t) => t.data.kind === 'teaching');
     <div class="container hero-grid">
       <div class="hero-text">
         <p class="eyebrow">{site.title}</p>
-        <h1>Hi, I'm Ashley<span class="cursor" aria-hidden="true">_</span></h1>
+        <h1>Hi, I'm Ashley.</h1>
         <p class="lede">
           I am a Computer Science Ph.D. student at the <strong>{site.affiliation}</strong>, advised by{' '}
           {site.advisor} in the {site.lab}. I study how artificial intelligence can generate, simulate, and enrich
@@ -182,8 +182,7 @@ const courses = teaching.filter((t) => t.data.kind === 'teaching');
     gap: clamp(2rem, 5vw, 4.5rem);
     align-items: center;
   }
-  .hero h1 { font-size: clamp(2.6rem, 1.8rem + 3.4vw, 4.2rem); margin-bottom: 0.35em; line-height: 1.1; }
-  .cursor { color: var(--accent); margin-left: 0.05em; }
+  .hero h1 { font-size: clamp(2.5rem, 1.8rem + 3vw, 3.8rem); margin-bottom: 0.4em; line-height: 1.1; }
   .hero .lede { color: var(--text); font-size: clamp(1.1rem, 1rem + 0.4vw, 1.25rem); }
   .hero-text > p:not(.eyebrow):not(.lede) { color: var(--muted); }
   .interests { margin: 1.25rem 0 1.75rem; }
@@ -246,8 +245,7 @@ const courses = teaching.filter((t) => t.data.kind === 'teaching');
     background: var(--primary);
     color: var(--primary-contrast);
   }
-  .cv-band { box-shadow: 6px 6px 0 var(--accent); }
-  .cv-band h2 { margin-bottom: 0.3rem; font-family: var(--font-pixel); font-weight: 600; letter-spacing: 0; }
+  .cv-band h2 { margin-bottom: 0.3rem; }
   .cv-band p { margin: 0; opacity: 0.92; }
   .cv-band .btn { background: var(--primary-contrast); color: var(--primary); border-color: var(--primary-contrast); }
   .cv-band .btn--ghost { background: transparent; color: var(--primary-contrast); }
