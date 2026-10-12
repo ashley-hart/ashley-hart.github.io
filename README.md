@@ -31,7 +31,7 @@ Requires Node 22.12+.
 | CV-only lists (software projects, skills) | top of `src/pages/cv.astro` |
 | CV PDF | replace `public/cv/ashley-hart-cv.pdf` (keep the name) |
 | Photos | `src/assets/` (automatically resized and converted to AVIF/WebP) |
-| Colors / typography | tokens at the top of `src/styles/global.css` |
+| Colors / typography | tokens at the top of `src/styles/global.css` (`--font-pixel`, `--font-mono`, `--font-sans`); font files are imported in `src/layouts/BaseLayout.astro` |
 
 ### Placeholders
 
