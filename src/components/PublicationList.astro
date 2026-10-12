@@ -1,0 +1,90 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { inlineBold } from '@/lib/utils';
+import Icon from './Icon.astro';
+
+interface Props {
+  publications: CollectionEntry<'publications'>[];
+  groupByYear?: boolean;
+}
+const { publications, groupByYear = false } = Astro.props;
+
+const typeLabel: Record<string, string> = {
+  conference: 'Conference',
+  journal: 'Journal',
+  poster: 'Poster',
+  workshop: 'Workshop',
+  preprint: 'Preprint',
+  thesis: 'Thesis',
+};
+
+const groups = groupByYear
+  ? [...new Set(publications.map((p) => p.data.year))].map((year) => ({
+      year,
+      items: publications.filter((p) => p.data.year === year),
+    }))
+  : [{ year: null, items: publications }];
+---
+
+{
+  groups.map((group) => (
+    <section class="pub-group" aria-labelledby={group.year ? `y${group.year}` : undefined}>
+      {group.year && <h3 id={`y${group.year}`} class="year">{group.year}</h3>}
+      <ol class="pubs">
+        {group.items.map(({ data }) => (
+          <li class:list={['pub', { 'is-placeholder': data.placeholder }]}>
+            <p class="title">
+              {data.url ? <a href={data.url}>{data.title}</a> : data.title}
+            </p>
+            <p class="authors" set:html={inlineBold(data.authors)} />
+            <p class="venue">
+              <em>{data.venue}</em>, {data.year}.
+            </p>
+            <div class="meta">
+              <span class="badge">{typeLabel[data.type]}</span>
+              {data.note && <span class="badge badge--accent">{data.note}</span>}
+              {data.url && (
+                <a class="link" href={data.url}>
+                  <Icon name="external" size={15} /> Publisher / DOI
+                </a>
+              )}
+              {data.pdf && (
+                <a class="link" href={data.pdf}>
+                  <Icon name="doc" size={15} /> PDF
+                </a>
+              )}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+  ))
+}
+
+<style>
+  .year {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: 0.06em;
+    margin: 1.5rem 0 0.75rem;
+  }
+  .pub-group:first-child .year { margin-top: 0; }
+  .pubs { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
+  .pub {
+    padding: 1.15rem 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--primary);
+    border-radius: var(--radius-sm);
+  }
+  .pub p { margin: 0 0 0.25rem; }
+  .title { font-family: var(--font-serif); font-size: 1.12rem; font-weight: 600; line-height: 1.35; }
+  .title a { color: var(--text); }
+  .title a:hover { color: var(--primary); }
+  .authors, .venue { color: var(--muted); font-size: 0.97rem; }
+  .authors :global(strong) { color: var(--text); }
+  .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.9rem; margin-top: 0.6rem; font-size: 0.9rem; }
+  .link { display: inline-flex; align-items: center; gap: 0.3rem; font-weight: 600; }
+</style>

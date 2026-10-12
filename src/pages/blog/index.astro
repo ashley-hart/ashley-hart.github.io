@@ -1,0 +1,26 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PostList from '@/components/PostList.astro';
+import Icon from '@/components/Icon.astro';
+import { getPosts } from '@/lib/utils';
+
+const posts = await getPosts();
+---
+
+<BaseLayout title="Blog" description="Research writing, findings, and reflections from Ashley B. Hart.">
+  <header class="page-header container-prose">
+    <p class="eyebrow">Blog</p>
+    <h1>Writing</h1>
+    <p>Research notes, findings, and reflections on AI, games, graduate school, and mentorship.</p>
+    <p class="rss"><a href="/rss.xml"><Icon name="rss" size={16} /> Subscribe via RSS</a></p>
+  </header>
+  <div class="container-prose list">
+    {posts.length > 0 ? <PostList posts={posts} headingLevel="h2" /> : <p>No posts yet. Check back soon.</p>}
+  </div>
+</BaseLayout>
+
+<style>
+  .rss { margin-top: 0.75rem; font-size: 0.95rem; }
+  .rss a { display: inline-flex; align-items: center; gap: 0.35rem; }
+  .list { padding-bottom: 3rem; }
+</style>

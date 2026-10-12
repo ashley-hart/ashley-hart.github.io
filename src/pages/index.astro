@@ -1,0 +1,259 @@
+---
+import { Picture } from 'astro:assets';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Icon from '@/components/Icon.astro';
+import SocialLinks from '@/components/SocialLinks.astro';
+import ProjectCard from '@/components/ProjectCard.astro';
+import PublicationList from '@/components/PublicationList.astro';
+import PostList from '@/components/PostList.astro';
+import NewsList from '@/components/NewsList.astro';
+import { site } from '@/site.config';
+import { byOrder, getPosts, getPublications, getVisible } from '@/lib/utils';
+import portrait from '@/assets/ashley-hart-2025.jpg';
+
+const projects = (await getVisible('projects')).sort(byOrder).slice(0, 4);
+const publications = (await getPublications()).filter((p) => p.data.selected || p.data.placeholder);
+const news = (await getVisible('news')).sort((a, b) => b.data.date.localeCompare(a.data.date)).slice(0, 5);
+const posts = (await getPosts()).slice(0, 3);
+const teaching = (await getVisible('teaching')).sort(byOrder);
+const mentoring = teaching.filter((t) => t.data.kind !== 'teaching').slice(0, 3);
+const courses = teaching.filter((t) => t.data.kind === 'teaching');
+---
+
+<BaseLayout>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <p class="eyebrow">{site.title}</p>
+        <h1>Hi, I'm Ashley.</h1>
+        <p class="lede">
+          I am a Computer Science Ph.D. student at the <strong>{site.affiliation}</strong>, advised by{' '}
+          {site.advisor} in the {site.lab}. I study how artificial intelligence can generate, simulate, and enrich
+          interactive worlds, with a current focus on how <strong>large language models</strong> shape{' '}
+          <strong>procedural content generation</strong> for games and simulations.
+        </p>
+        <p>
+          My work also spans human-centered and explainable AI, and I am committed to culturally relevant computing,
+          mentorship, and promoting technical literacy in underserved communities.
+        </p>
+        <ul class="tags interests" aria-label="Research interests">
+          {site.interests.map((i) => <li class="tag">{i}</li>)}
+        </ul>
+        <div class="btn-row">
+          <a class="btn" href={site.cvPdf} download><Icon name="download" /> Download CV</a>
+          <a class="btn btn--ghost" href="/about/">Full bio <Icon name="arrow" /></a>
+          <a class="btn btn--ghost" href={`mailto:${site.email}`}><Icon name="mail" /> Get in touch</a>
+        </div>
+        <SocialLinks />
+      </div>
+      <figure class="portrait">
+        <Picture
+          src={portrait}
+          formats={['avif', 'webp']}
+          widths={[360, 540, 760]}
+          width={760}
+          sizes="(max-width: 52rem) 80vw, 380px"
+          alt="Ashley Hart smiling outdoors on the University of Florida campus, holding her National Science & Technology Medals Foundation mentoring award."
+          loading="eager"
+          fetchpriority="high"
+        />
+      </figure>
+    </div>
+    {
+      site.jobMarket.enabled && (
+        <div class="container">
+          <div class="callout market">
+            <Icon name="award" size={24} />
+            <p>
+              <strong>On the academic job market.</strong> {site.jobMarket.message}{' '}
+              <a href={`mailto:${site.email}`}>Email me</a> or <a href="/cv/">view my CV</a>.
+            </p>
+          </div>
+        </div>
+      )
+    }
+  </section>
+
+  <!-- Research -->
+  <section class="section" aria-labelledby="research-h">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Research</p>
+          <h2 id="research-h">Projects &amp; themes</h2>
+        </div>
+        <a class="more" href="/research/">All research →</a>
+      </div>
+      <div class="grid grid-2">
+        {projects.map((p) => <ProjectCard project={p} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- News + Publications -->
+  <section class="section section--tint" aria-labelledby="pubs-h">
+    <div class="container split">
+      <div>
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Publications</p>
+            <h2 id="pubs-h">Selected work</h2>
+          </div>
+          <a class="more" href="/research/#publications">Full list →</a>
+        </div>
+        <PublicationList publications={publications} />
+      </div>
+      <aside aria-labelledby="news-h">
+        <p class="eyebrow">News</p>
+        <h2 id="news-h">Recent updates</h2>
+        <NewsList items={news} />
+      </aside>
+    </div>
+  </section>
+
+  <!-- Teaching & mentoring -->
+  <section class="section" aria-labelledby="teach-h">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Teaching &amp; Mentoring</p>
+          <h2 id="teach-h">Supporting the next generation</h2>
+        </div>
+        <a class="more" href="/teaching/">Teaching →</a>
+      </div>
+      <div class="grid grid-3">
+        {
+          [...courses.slice(0, 1), ...mentoring].map(({ data }) => (
+            <article class:list={['card', { 'is-placeholder': data.placeholder }]}>
+              <p class="kind">{data.kind}</p>
+              <h3>{data.title}</h3>
+              <p class="muted small">
+                {data.role} · {data.period}
+              </p>
+              {data.description && <p>{data.description}</p>}
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Writing -->
+  {
+    posts.length > 0 && (
+      <section class="section section--tint" aria-labelledby="blog-h">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Writing</p>
+              <h2 id="blog-h">From the blog</h2>
+            </div>
+            <a class="more" href="/blog/">All posts →</a>
+          </div>
+          <PostList posts={posts} />
+        </div>
+      </section>
+    )
+  }
+
+  <!-- CV band -->
+  <section class="section" aria-labelledby="cv-h">
+    <div class="container">
+      <div class="cv-band">
+        <div>
+          <h2 id="cv-h">Curriculum Vitae</h2>
+          <p>Education, research experience, publications, awards, and service, all in one place.</p>
+        </div>
+        <div class="btn-row">
+          <a class="btn" href="/cv/">View CV online</a>
+          <a class="btn btn--ghost" href={site.cvPdf} download><Icon name="download" /> PDF</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero { padding-block: clamp(2.5rem, 7vw, 5rem) clamp(2rem, 5vw, 3.5rem); }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+  .hero h1 { font-size: clamp(2.5rem, 1.8rem + 3vw, 3.8rem); margin-bottom: 0.4em; }
+  .hero .lede { color: var(--text); font-size: clamp(1.1rem, 1rem + 0.4vw, 1.25rem); }
+  .hero-text > p:not(.eyebrow):not(.lede) { color: var(--muted); }
+  .interests { margin: 1.25rem 0 1.75rem; }
+  .hero .btn-row { margin-bottom: 1.5rem; }
+
+  .portrait { margin: 0; position: relative; justify-self: center; width: min(100%, 380px); }
+  .portrait::before {
+    content: '';
+    position: absolute;
+    inset: 1.25rem -1.25rem -1.25rem 1.25rem;
+    border-radius: 24px;
+    background: var(--secondary);
+    z-index: -1;
+  }
+  .portrait::after {
+    content: '';
+    position: absolute;
+    width: 5rem; height: 5rem;
+    left: -1.25rem; top: -1.25rem;
+    border-radius: 50%;
+    background: var(--accent);
+    z-index: -1;
+  }
+  .portrait :global(img) {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 50% 30%;
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+  }
+  .portrait { isolation: isolate; }
+
+  .market { margin-top: clamp(2rem, 5vw, 3.5rem); }
+  .market :global(svg) { color: var(--accent-ink); flex: none; margin-top: 0.15rem; }
+
+  .split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+  .kind {
+    margin: 0 0 0.4rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+  }
+  .small { font-size: 0.93rem; }
+
+  .cv-band {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border-radius: var(--radius);
+    background: var(--primary);
+    color: var(--primary-contrast);
+  }
+  .cv-band h2 { margin-bottom: 0.3rem; }
+  .cv-band p { margin: 0; opacity: 0.92; }
+  .cv-band .btn { background: var(--primary-contrast); color: var(--primary); border-color: var(--primary-contrast); }
+  .cv-band .btn--ghost { background: transparent; color: var(--primary-contrast); }
+  .cv-band .btn--ghost:hover { background: color-mix(in srgb, var(--primary-contrast) 15%, transparent); }
+
+  @media (max-width: 52rem) {
+    .hero-grid, .split { grid-template-columns: 1fr; }
+    .portrait { order: -1; width: min(72%, 320px); margin-bottom: 1rem; }
+  }
+</style>

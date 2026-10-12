@@ -1,0 +1,40 @@
+# Publications, newest first is NOT required — the site sorts by year.
+# Fields: id, title, authors, venue, year, type
+#   (conference | journal | poster | workshop | preprint | thesis)
+# Optional: url, pdf (path under /public), note, selected (show on homepage),
+#   placeholder (true = only visible during `npm run dev`).
+# Wrap your own name in ** ** to bold it, e.g. "**Hart, A. B.**".
+
+- id: cassani-2025-iitsec
+  title: Human-AI Collaboration for Synthetic Media Detection in Training and Operations
+  authors: Cassani, L., Davinroy, M., Toumbeva, T., Bautista, P., Fortier, L., Cook, J., **Hart, A. B.**, Volkova, S.
+  venue: Proceedings of the Interservice/Industry Training, Simulation and Education Conference (I/ITSEC), Orlando, FL, USA
+  year: 2025
+  type: conference
+  selected: true
+
+- id: gilbert-2024-hfes
+  title: "Two-Step Ballot Verification: Mitigating the Impact of the Hawthorne Effect on Vote-Flipping Studies"
+  authors: Gilbert, J. E., McKenzie, J., Smith, A., Jennings, J., & **Hart, A. B.**
+  venue: Proceedings of the Human Factors and Ergonomics Society (HFES) Annual Meeting, Phoenix, AZ, USA, pp. 1–5
+  year: 2024
+  type: conference
+  url: https://journals.sagepub.com/doi/full/10.1177/10711813241279792
+  selected: true
+
+- id: mcnamara-2024-hcii
+  title: Plain Language to Address Dimensionality in Feature-Contribution Explanations for End-Users
+  authors: McNamara, K., **Hart, A. B.**, Morrow, N., McKenzie, J., & Gilbert, J. E.
+  venue: "HCI International 2024 Posters (HCII 2024), Communications in Computer and Information Science, vol. 2120. Springer, Cham"
+  year: 2024
+  type: poster
+  url: https://doi.org/10.1007/978-3-031-62110-9_21
+  selected: true
+
+- id: placeholder-llm-pcg
+  title: "[Placeholder] Title of your LLM + procedural content generation paper"
+  authors: "**Hart, A. B.**, [Co-authors]"
+  venue: "[Venue / under review / in preparation]"
+  year: 2026
+  type: preprint
+  placeholder: true

@@ -1,0 +1,70 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Icon from '@/components/Icon.astro';
+
+const games = (await getCollection('games')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Games"
+  description="Games and interactive projects by Ashley B. Hart, built with Godot, Unity, and Pygame. Playable web builds coming soon."
+>
+  <header class="page-header container">
+    <p class="eyebrow">Games</p>
+    <h1>Games &amp; interactive work</h1>
+    <p>
+      Building games is part of how I think about AI, simulation, and procedural generation. Playable web builds will
+      be embedded here; until then, find released projects on{' '}
+      <a href="https://ashley-hart.itch.io/">itch.io</a>.
+    </p>
+  </header>
+
+  <div class="container grid grid-3 games">
+    {
+      games.map(({ id, data }) => (
+        <article class="card game">
+          <div class="thumb" aria-hidden="true">
+            <Icon name={data.status === 'playable' ? 'play' : 'gamepad'} size={36} />
+          </div>
+          <p class="meta">
+            {data.engine} · {data.year}
+            <span class:list={['badge', { 'badge--accent': data.status === 'playable' }]}>
+              {data.status === 'playable' ? 'Playable' : 'Coming soon'}
+            </span>
+          </p>
+          <h2>
+            <a href={`/games/${id}/`}>{data.title}</a>
+          </h2>
+          <p class="muted">{data.summary}</p>
+        </article>
+      ))
+    }
+  </div>
+</BaseLayout>
+
+<style>
+  .games { padding-bottom: 3.5rem; }
+  .game { position: relative; display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+  .game:hover { border-color: var(--primary); }
+  .game > :not(.thumb) { margin-inline: 1.5rem; }
+  .game > :last-child { margin-bottom: 1.5rem; }
+  .thumb {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 16 / 8;
+    margin-bottom: 1rem;
+    color: var(--text);
+    background:
+      radial-gradient(circle at 25% 30%, color-mix(in srgb, var(--secondary) 70%, transparent), transparent 60%),
+      radial-gradient(circle at 80% 80%, color-mix(in srgb, var(--accent) 45%, transparent), transparent 55%),
+      var(--tint);
+  }
+  .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; color: var(--muted); font-size: 0.9rem; margin-bottom: 0.4rem; }
+  h2 { font-size: 1.35rem; margin-bottom: 0.35rem; }
+  h2 a { color: var(--text); text-decoration: none; }
+  h2 a::after { content: ''; position: absolute; inset: 0; }
+  h2 a:hover { color: var(--primary); }
+  h2 a:focus-visible { outline: none; }
+  .game:has(a:focus-visible) { outline: 3px solid var(--accent); outline-offset: 2px; }
+</style>

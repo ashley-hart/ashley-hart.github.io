@@ -1,0 +1,94 @@
+---
+/**
+ * Embeds a web build of a game (Godot "Web" export, Pygame via pygbag, etc.)
+ * that lives in /public. The game only loads after the visitor clicks Play,
+ * so the page stays fast and no audio autoplays.
+ */
+import Icon from './Icon.astro';
+
+interface Props {
+  src?: string;
+  title: string;
+  aspectRatio?: string;
+}
+const { src, title, aspectRatio = '16 / 9' } = Astro.props;
+---
+
+<div class="game-frame" style={`aspect-ratio: ${aspectRatio}`}>
+  {
+    src ? (
+      <>
+        <button class="play" type="button" data-src={src} data-title={title}>
+          <Icon name="play" size={28} />
+          <span>Play {title}</span>
+        </button>
+        <noscript>
+          <a href={src}>Open {title} in a new page</a>
+        </noscript>
+      </>
+    ) : (
+      <div class="soon">
+        <Icon name="gamepad" size={40} />
+        <p><strong>Playable web build coming soon.</strong></p>
+        <p class="muted">This space is reserved for an embedded Godot or Pygame build.</p>
+      </div>
+    )
+  }
+</div>
+{
+  src && (
+    <p class="hint muted">
+      Tip: click inside the game to give it keyboard focus. <a href={src}>Open full page</a>.
+    </p>
+  )
+}
+
+<script>
+  for (const btn of document.querySelectorAll<HTMLButtonElement>('.game-frame .play')) {
+    btn.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = btn.dataset.src!;
+      iframe.title = btn.dataset.title ?? 'Game';
+      iframe.allow = 'autoplay; fullscreen; gamepad';
+      iframe.allowFullscreen = true;
+      btn.replaceWith(iframe);
+      iframe.focus();
+    });
+  }
+</script>
+
+<style>
+  .game-frame {
+    position: relative;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background:
+      radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--secondary) 55%, transparent), transparent 55%),
+      radial-gradient(circle at 80% 85%, color-mix(in srgb, var(--accent) 35%, transparent), transparent 50%),
+      var(--surface);
+  }
+  .game-frame :global(iframe) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; }
+  .play {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 1.5rem;
+    border: 0;
+    border-radius: 999px;
+    background: var(--primary);
+    color: var(--primary-contrast);
+    font: inherit;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+  }
+  .play:hover { filter: brightness(1.08); }
+  .soon { text-align: center; padding: 1.5rem; color: var(--text); }
+  .soon p { margin: 0.4rem 0 0; }
+  .hint { font-size: 0.9rem; margin-top: 0.6rem; }
+</style>

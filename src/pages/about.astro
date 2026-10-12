@@ -1,0 +1,156 @@
+---
+import { Picture } from 'astro:assets';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Icon from '@/components/Icon.astro';
+import SocialLinks from '@/components/SocialLinks.astro';
+import { site } from '@/site.config';
+import { byOrder, byYearDesc, getVisible } from '@/lib/utils';
+import headshot from '@/assets/ashley-hart-headshot.jpg';
+
+const education = (await getVisible('education')).sort(byOrder);
+const experience = (await getVisible('experience')).sort(byOrder);
+const awards = (await getVisible('awards')).sort(byYearDesc);
+---
+
+<BaseLayout
+  title="About"
+  description="Biography of Ashley B. Hart, a Computer Science Ph.D. student at the University of Florida, and her path through AI, games, and human-centered computing research."
+>
+  <header class="page-header container">
+    <p class="eyebrow">About</p>
+    <h1>Biography</h1>
+  </header>
+
+  <div class="container about-grid">
+    <aside class="profile">
+      <Picture
+        src={headshot}
+        formats={['avif', 'webp']}
+        widths={[300, 600]}
+        width={600}
+        sizes="300px"
+        alt="Portrait of Ashley Hart outdoors in front of autumn foliage."
+      />
+      <div class="card">
+        <p class="name">{site.name}</p>
+        <p class="muted">{site.title}<br />{site.affiliation}</p>
+        <p class="muted">{site.lab}<br />Advisor: {site.advisor}</p>
+        <SocialLinks variant="list" />
+        <a class="btn" href={site.cvPdf} download><Icon name="download" /> Download CV</a>
+      </div>
+    </aside>
+
+    <article class="prose">
+      <!-- Edit the biography text directly below. -->
+      <p class="lede">
+        Ashley B. Hart is a Computer Science Ph.D. student at the University of Florida, advised by Dr. Juan E. Gilbert
+        and a member of the Computing for Social Good Lab. She is an alumna of the University of Central Florida and a
+        recipient of the GEM, McKnight, and GenNEXT Fellowships.
+      </p>
+      <p>
+        Her research interests include artificial intelligence, games and simulations, culturally relevant computing,
+        and promoting technical literacy in underserved communities. Her passion for artificial intelligence, video
+        games, and computer science drives research that aims to develop new ways to simulate worlds and train
+        intelligent agents. She believes that exploring interactions between AI techniques can yield new and innovative
+        ways to create worlds for creative and constructive purposes. Her current research examines how large language
+        models impact procedural content generation.
+      </p>
+      <p>
+        Ashley's mission is to be a force for positive change in the lives of others, especially up-and-coming youth.
+        She is deeply committed to mentorship and community service and views her Ph.D. studies as a springboard for a
+        career dedicated to impact and service. In June 2025, she was nominated for and recognized as the{' '}
+        <a href="https://cise.ufl.edu/2025/08/cise-ph-d-student-recognized-with-national-award-for-mentorship/"
+          >Mentor of the Year by the National Science &amp; Technology Medals Foundation</a
+        >. She continues to mentor students at UF and through the foundation's inSTEM program.
+      </p>
+
+      <h2>Research journey</h2>
+      <p>
+        Ashley's path into research began as an undergraduate at UCF, where a series of research experiences exposed
+        her to very different corners of computer science: building a Boolean satisfiability solver at the University
+        of Virginia, an independent study in quantum computing at UCF, and research on classical and quantum
+        communications through RISE@Rutgers. In parallel, she founded a student club to teach peers algorithms and data
+        structures and built games, including her senior design project, <a href="/games/depths/">Depths</a>.
+      </p>
+      <p>
+        At the University of Florida, her work has spanned explainable AI for end-users, trustworthy voting technology,
+        and, through industry internships at RTX and Aptima, simulation software, multi-agent LLM tooling, and human-AI
+        collaboration for synthetic media detection. These threads now converge in her dissertation research on large
+        language models and procedural content generation.
+      </p>
+
+      <h2>Beyond research</h2>
+      <p>
+        Ashley is a game developer who builds small games in Godot and Unity, often through game jams. You can find her
+        work on the <a href="/games/">Games</a> page and on <a href="https://ashley-hart.itch.io/">itch.io</a>. She also
+        writes about research and graduate school on her <a href="/blog/">blog</a>.
+      </p>
+
+      <h2 id="education">Education</h2>
+      <ol class="timeline">
+        {
+          education.map(({ data }) => (
+            <li class:list={{ 'is-placeholder': data.placeholder }}>
+              <h3>{data.title}</h3>
+              <p class="meta">
+                {data.organization} · {data.period}
+              </p>
+              {data.details.length > 0 && <ul>{data.details.map((d) => <li>{d}</li>)}</ul>}
+            </li>
+          ))
+        }
+      </ol>
+
+      <h2 id="experience">Research &amp; industry experience</h2>
+      <ol class="timeline">
+        {
+          experience.map(({ data }) => (
+            <li class:list={{ 'is-placeholder': data.placeholder }}>
+              <h3>{data.title}</h3>
+              <p class="meta">
+                {data.organization} · {data.period}
+              </p>
+              {data.details.length > 0 && <ul>{data.details.map((d) => <li>{d}</li>)}</ul>}
+            </li>
+          ))
+        }
+      </ol>
+
+      <h2 id="awards">Honors &amp; awards</h2>
+      <ul class="awards">
+        {
+          awards.map(({ data }) => (
+            <li class:list={{ 'is-placeholder': data.placeholder }}>
+              <span class="yr">{data.year}</span>
+              <span>{data.url ? <a href={data.url}>{data.title}</a> : data.title}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 18.75rem minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+    padding-bottom: 3rem;
+  }
+  .profile { position: sticky; top: 5.5rem; display: grid; gap: 1rem; }
+  .profile :global(img) { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow); }
+  .profile p { margin-bottom: 0.75rem; font-size: 0.97rem; }
+  .profile .name { font-family: var(--font-serif); font-weight: 600; font-size: 1.25rem; margin-bottom: 0.25rem; }
+  .profile .btn { margin-top: 1rem; width: 100%; }
+  .prose { max-width: var(--prose); }
+  .prose .lede { color: var(--text); }
+  .awards { list-style: none; padding: 0; }
+  .awards li { display: grid; grid-template-columns: 3.5rem 1fr; gap: 0.75rem; padding: 0.45rem 0; border-bottom: 1px dashed var(--border); }
+  .yr { font-weight: 700; color: var(--primary); }
+  @media (max-width: 52rem) {
+    .about-grid { grid-template-columns: 1fr; }
+    .profile { position: static; max-width: 22rem; }
+  }
+</style>

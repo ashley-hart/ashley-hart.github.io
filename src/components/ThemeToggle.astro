@@ -1,0 +1,43 @@
+---
+import Icon from './Icon.astro';
+---
+
+<button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark mode">
+  <span class="icon-sun"><Icon name="sun" /></span>
+  <span class="icon-moon"><Icon name="moon" /></span>
+</button>
+
+<script>
+  const root = document.documentElement;
+  for (const btn of document.querySelectorAll<HTMLButtonElement>('.theme-toggle')) {
+    const sync = () => btn.setAttribute('aria-pressed', String(root.dataset.theme === 'dark'));
+    sync();
+    btn.addEventListener('click', () => {
+      const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      try { localStorage.setItem('theme', next); } catch {}
+      sync();
+    });
+  }
+</script>
+
+<style>
+  .theme-toggle {
+    display: inline-grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+  }
+  .theme-toggle:hover { border-color: var(--primary); color: var(--primary); }
+  .theme-toggle span { display: inline-grid; }
+  /* Show the icon for the theme you would switch TO. */
+  .icon-sun { display: none !important; }
+  :global([data-theme='dark']) .icon-sun { display: inline-grid !important; }
+  :global([data-theme='dark']) .icon-moon { display: none !important; }
+</style>

@@ -1,0 +1,45 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatMonth } from '@/lib/utils';
+
+interface Props {
+  items: CollectionEntry<'news'>[];
+}
+const { items } = Astro.props;
+---
+
+<ul class="news">
+  {
+    items.map(({ data }) => (
+      <li class:list={{ 'is-placeholder': data.placeholder }}>
+        <time datetime={data.date}>{formatMonth(data.date)}</time>
+        <p>
+          {data.text}
+          {data.url && (
+            <>
+              {' '}
+              <a href={data.url}>Read more<span class="visually-hidden"> about this update</span></a>
+            </>
+          )}
+        </p>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .news { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.25rem; }
+  li {
+    display: grid;
+    grid-template-columns: 6.5rem 1fr;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px dashed var(--border);
+  }
+  li:last-child { border-bottom: 0; }
+  time { font-weight: 700; color: var(--primary); font-size: 0.92rem; padding-top: 0.1rem; }
+  p { margin: 0; }
+  @media (max-width: 30rem) {
+    li { grid-template-columns: 1fr; gap: 0.15rem; }
+  }
+</style>

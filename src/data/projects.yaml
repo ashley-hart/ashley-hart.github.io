@@ -1,0 +1,53 @@
+# Research projects / themes shown on the homepage and Research page.
+# Summaries below are drawn from your CV and publications — please refine
+# them in your own words.
+
+- id: llm-pcg
+  title: Large Language Models for Procedural Content Generation
+  period: Ongoing
+  status: active
+  order: 1
+  summary: >-
+    My dissertation research investigates how large language models affect
+    procedural content generation (PCG) — the algorithmic creation of game
+    worlds, levels, and simulations. I am interested in how combining AI
+    techniques can yield new ways to build worlds for creative and
+    constructive purposes, and in training intelligent agents within them.
+  keywords: [LLMs, PCG, Games, Simulation]
+
+- id: synthetic-media
+  title: Human-AI Collaboration for Synthetic Media Detection
+  period: 2025
+  status: completed
+  order: 2
+  summary: >-
+    As an AI Engineering intern at Aptima, I contributed to work on how people
+    and AI systems can collaborate to detect synthetic media in training and
+    operational settings.
+  keywords: [Human-AI Teaming, AI Evaluation, Synthetic Media]
+  outputs: [I/ITSEC 2025]
+
+- id: xai-plain-language
+  title: Plain-Language Explanations for End-Users
+  period: 2024
+  status: completed
+  order: 3
+  summary: >-
+    Explainable AI methods often present feature contributions in ways that
+    overwhelm non-experts. This work examined plain-language approaches to
+    reducing the dimensionality of feature-contribution explanations for
+    end-users.
+  keywords: [Explainable AI, HCI, End-Users]
+  outputs: [HCII 2024 Posters]
+
+- id: ballot-verification
+  title: Trustworthy Voting Technology
+  period: 2024
+  status: completed
+  order: 4
+  summary: >-
+    With the Computing for Social Good Lab, I contributed to research on
+    two-step ballot verification and how the Hawthorne effect influences the
+    results of vote-flipping studies.
+  keywords: [Human Factors, Elections, Usability]
+  outputs: [HFES 2024]

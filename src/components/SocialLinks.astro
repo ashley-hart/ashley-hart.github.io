@@ -1,0 +1,45 @@
+---
+import { site } from '@/site.config';
+import Icon from './Icon.astro';
+
+interface Props {
+  variant?: 'icons' | 'list';
+}
+const { variant = 'icons' } = Astro.props;
+const links = site.links.filter((l) => l.url);
+---
+
+<ul class:list={['social', variant]}>
+  {
+    links.map((l) => (
+      <li>
+        <a href={l.url} rel={l.url.startsWith('http') ? 'me noopener' : undefined}>
+          <Icon name={l.icon} size={20} />
+          <span class={variant === 'icons' ? 'visually-hidden' : undefined}>{l.label}</span>
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .social { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
+  .social a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .icons a {
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .icons a:hover, .list a:hover { color: var(--primary); border-color: var(--primary); }
+  .list { flex-direction: column; gap: 0.6rem; }
+  .list a { font-weight: 500; }
+</style>

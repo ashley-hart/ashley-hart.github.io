@@ -1,0 +1,44 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  headingLevel?: 'h2' | 'h3';
+}
+const { project, headingLevel: H = 'h3' } = Astro.props;
+const { data } = project;
+---
+
+<article class:list={['card', 'project', { 'is-placeholder': data.placeholder }]} id={project.id}>
+  <div class="top">
+    <span class:list={['status', data.status]}>{data.status === 'active' ? 'Current focus' : data.period}</span>
+  </div>
+  <H class="title">{data.title}</H>
+  <p>{data.summary}</p>
+  {
+    (data.keywords.length > 0 || data.outputs.length > 0) && (
+      <ul class="tags" aria-label="Keywords and outputs">
+        {data.keywords.map((k) => <li class="tag">{k}</li>)}
+        {data.outputs.map((o) => <li class="tag output">{o}</li>)}
+      </ul>
+    )
+  }
+</article>
+
+<style>
+  .project { display: flex; flex-direction: column; border-top: 4px solid var(--secondary); }
+  .project:has(.active) { border-top-color: var(--accent); }
+  .title { font-size: 1.2rem; }
+  .project p { color: var(--muted); flex: 1; }
+  .status {
+    display: inline-block;
+    margin-bottom: 0.6rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .status.active { color: var(--accent-ink); }
+  .output { border-color: var(--primary); color: var(--primary); font-weight: 600; }
+</style>

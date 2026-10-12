@@ -1,0 +1,235 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Icon from '@/components/Icon.astro';
+import { site } from '@/site.config';
+import { byOrder, byYearDesc, getPublications, getVisible, inlineBold } from '@/lib/utils';
+
+const education = (await getVisible('education')).sort(byOrder);
+const experience = (await getVisible('experience')).sort(byOrder);
+const publications = await getPublications();
+const teaching = (await getVisible('teaching')).sort(byOrder);
+const awards = (await getVisible('awards')).sort(byYearDesc);
+
+// Short lists that only appear on the CV. Edit freely.
+const softwareProjects = [
+  { name: 'Rainewal', kind: 'Video game (Godot)', period: '2024 – present' },
+  { name: 'Umbral', kind: 'Video game, Pirate Software Game Jam 15 (Godot)', period: '2024' },
+  { name: 'RecycPal', kind: 'ML mobile & web app, 3rd place overall, DeltaHacks 2022', period: '2022 – 2023' },
+  { name: 'Depths', kind: 'Video game, UCF senior design (Unity)', period: '2021 – 2022' },
+  { name: 'PharmEasy', kind: 'Prescription management app, KnightHacks 2021', period: '2021' },
+  { name: 'DPLL Satisfiability Solver', kind: 'Research software (Python), UVA', period: '2020' },
+];
+const skills = [
+  { label: 'Languages', items: 'Python, C, C++, C#, Java, JavaScript, GDScript, R, HTML/CSS' },
+  { label: 'AI / ML', items: 'PyTorch, TensorFlow, scikit-learn, NumPy, Matplotlib, AutoGen' },
+  { label: 'Games & UI', items: 'Godot, Unity, PyQt, React, Django, Material UI, Aseprite, GIMP' },
+];
+const profileLinks = site.links.filter((l) => l.url && l.icon !== 'mail');
+---
+
+<BaseLayout title="CV" description="Curriculum vitae of Ashley B. Hart, Computer Science Ph.D. student at the University of Florida.">
+  <div class="container cv-wrap">
+    <div class="toolbar no-print">
+      <p class="muted">
+        This is a web version of my CV. For the full formatted document, download the PDF.
+      </p>
+      <div class="btn-row">
+        <a class="btn" href={site.cvPdf} download><Icon name="download" /> Download PDF</a>
+        <a class="btn btn--ghost" href={site.cvPdf}><Icon name="doc" /> Open PDF</a>
+        <button class="btn btn--ghost" type="button" id="print-cv"><Icon name="print" /> Print</button>
+      </div>
+    </div>
+
+    <article class="cv card">
+      <header class="cv-head">
+        <div>
+          <h1>{site.name}</h1>
+          <p class="subtitle">{site.title}, {site.affiliation}</p>
+        </div>
+        <ul class="contact">
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+          <li><a href={site.url}>{site.url.replace('https://', '')}</a></li>
+          {profileLinks.map((l) => <li><a href={l.url}>{l.label}</a></li>)}
+        </ul>
+      </header>
+
+      <section aria-labelledby="cv-interests">
+        <h2 id="cv-interests">Research Interests</h2>
+        <p>{site.interests.join(' · ')}</p>
+      </section>
+
+      <section aria-labelledby="cv-edu">
+        <h2 id="cv-edu">Education</h2>
+        {
+          education.map(({ data }) => (
+            <div class:list={['entry', { 'is-placeholder': data.placeholder }]}>
+              <div class="row">
+                <h3>{data.title}</h3>
+                <span class="when">{data.period}</span>
+              </div>
+              <p class="org">{data.organization}{data.location && `, ${data.location}`}</p>
+              {data.details.length > 0 && <p class="detail">{data.details.join(' · ')}</p>}
+            </div>
+          ))
+        }
+      </section>
+
+      <section aria-labelledby="cv-pubs">
+        <h2 id="cv-pubs">Publications</h2>
+        <ol class="pubs">
+          {
+            publications.map(({ data }) => (
+              <li class:list={{ 'is-placeholder': data.placeholder }}>
+                <span set:html={inlineBold(data.authors)} /> ({data.year}).{' '}
+                <strong>{data.url ? <a href={data.url}>{data.title}</a> : data.title}</strong>. <em>{data.venue}</em>.
+              </li>
+            ))
+          }
+        </ol>
+      </section>
+
+      <section aria-labelledby="cv-exp">
+        <h2 id="cv-exp">Research &amp; Industry Experience</h2>
+        {
+          experience.map(({ data }) => (
+            <div class:list={['entry', { 'is-placeholder': data.placeholder }]}>
+              <div class="row">
+                <h3>{data.title}</h3>
+                <span class="when">{data.period}</span>
+              </div>
+              <p class="org">{data.organization}{data.location && `, ${data.location}`}</p>
+              {data.details.length > 0 && <ul>{data.details.map((d) => <li>{d}</li>)}</ul>}
+            </div>
+          ))
+        }
+      </section>
+
+      <section aria-labelledby="cv-teach">
+        <h2 id="cv-teach">Teaching, Mentoring &amp; Leadership</h2>
+        {
+          teaching.map(({ data }) => (
+            <div class:list={['entry', { 'is-placeholder': data.placeholder }]}>
+              <div class="row">
+                <h3>{data.role}, {data.title}</h3>
+                <span class="when">{data.period}</span>
+              </div>
+              {data.description && <p class="detail">{data.description}</p>}
+            </div>
+          ))
+        }
+      </section>
+
+      <section aria-labelledby="cv-awards">
+        <h2 id="cv-awards">Honors &amp; Awards</h2>
+        <ul class="plain">
+          {
+            awards.map(({ data }) => (
+              <li class:list={['row', { 'is-placeholder': data.placeholder }]}>
+                <span>{data.title}</span>
+                <span class="when">{data.year}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section aria-labelledby="cv-proj">
+        <h2 id="cv-proj">Selected Software &amp; Game Projects</h2>
+        <ul class="plain">
+          {
+            softwareProjects.map((p) => (
+              <li class="row">
+                <span>
+                  <strong>{p.name}</strong>, {p.kind}
+                </span>
+                <span class="when">{p.period}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section aria-labelledby="cv-skills">
+        <h2 id="cv-skills">Technical Skills</h2>
+        <dl class="skills">
+          {
+            skills.map((s) => (
+              <>
+                <dt>{s.label}</dt>
+                <dd>{s.items}</dd>
+              </>
+            ))
+          }
+        </dl>
+      </section>
+    </article>
+  </div>
+</BaseLayout>
+
+<script>
+  document.getElementById('print-cv')?.addEventListener('click', () => window.print());
+</script>
+
+<style>
+  .cv-wrap { max-width: 52rem; padding-block: 2.5rem 3rem; }
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .toolbar p { margin: 0; flex: 1 1 18rem; }
+  .cv { padding: clamp(1.5rem, 5vw, 3rem); }
+  .cv-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 3px solid var(--primary);
+    margin-bottom: 0.5rem;
+  }
+  .cv-head h1 { font-size: clamp(2rem, 1.6rem + 1.5vw, 2.6rem); margin: 0; }
+  .subtitle { color: var(--muted); margin: 0.25rem 0 0; }
+  .contact { list-style: none; padding: 0; margin: 0; font-size: 0.93rem; text-align: right; }
+  .cv section { margin-top: 1.75rem; }
+  .cv h2 {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--primary);
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0.9rem;
+  }
+  .entry { margin-bottom: 1rem; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 0.25rem 1rem; flex-wrap: wrap; }
+  .cv h3 { font-size: 1.05rem; margin: 0; }
+  .when { color: var(--muted); font-size: 0.92rem; white-space: nowrap; }
+  .org { margin: 0.1rem 0 0; font-style: italic; color: var(--muted); }
+  .detail { margin: 0.2rem 0 0; font-size: 0.97rem; }
+  .entry ul { margin: 0.3rem 0 0; padding-left: 1.2rem; font-size: 0.97rem; }
+  .pubs { padding-left: 1.3rem; font-size: 0.97rem; }
+  .pubs li + li { margin-top: 0.6rem; }
+  .pubs :global(strong) { font-weight: 600; }
+  .plain { list-style: none; padding: 0; margin: 0; }
+  .plain li { padding: 0.25rem 0; }
+  .skills { display: grid; grid-template-columns: max-content 1fr; gap: 0.4rem 1.25rem; margin: 0; }
+  .skills dt { font-weight: 700; }
+  .skills dd { margin: 0; }
+  @media (max-width: 36rem) {
+    .contact { text-align: left; }
+    .skills { grid-template-columns: 1fr; }
+    .skills dd { margin-bottom: 0.5rem; }
+  }
+  @media print {
+    .cv-wrap { max-width: none; padding: 0; width: 100%; }
+    .cv { border: 0; padding: 0; }
+    .cv section { break-inside: auto; }
+    .entry, .pubs li { break-inside: avoid; }
+  }
+</style>

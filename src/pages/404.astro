@@ -1,0 +1,19 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page not found">
+  <section class="container-prose nf">
+    <p class="eyebrow">404</p>
+    <h1>This page wandered off.</h1>
+    <p class="lede">The page you are looking for doesn't exist or has moved.</p>
+    <div class="btn-row">
+      <a class="btn" href="/">Go home</a>
+      <a class="btn btn--ghost" href="/research/">See my research</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .nf { padding-block: clamp(4rem, 12vw, 8rem); }
+</style>

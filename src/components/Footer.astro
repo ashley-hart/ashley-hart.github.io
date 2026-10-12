@@ -1,0 +1,43 @@
+---
+import { site } from '@/site.config';
+import SocialLinks from './SocialLinks.astro';
+import Icon from './Icon.astro';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container inner">
+    <div>
+      <p class="name">{site.name}</p>
+      <p class="muted">{site.title} · {site.affiliation}</p>
+      <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
+    </div>
+    <div class="right">
+      <SocialLinks />
+      <p class="small muted">
+        © {year} {site.name} ·{' '}
+        <a href="/rss.xml"><Icon name="rss" size={14} /> RSS</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 2rem;
+    padding-block: 2.5rem;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1.5rem 2rem;
+  }
+  p { margin: 0 0 0.3rem; }
+  .name { font-family: var(--font-serif); font-weight: 600; font-size: 1.2rem; }
+  .right { display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-start; }
+  .small { font-size: 0.9rem; }
+  .small a { display: inline-flex; align-items: center; gap: 0.2rem; }
+</style>

@@ -1,0 +1,66 @@
+# Research and industry experience, shown on the CV and About pages.
+
+- id: aptima
+  title: AI Engineering Intern
+  organization: Aptima, Inc.
+  location: Orlando, FL
+  period: May 2025 – Aug 2025
+  details:
+    - Advanced human-centered research and development through the design, implementation, and evaluation of intelligent systems.
+  order: 1
+
+- id: rtx-2024
+  title: Software Development Intern
+  organization: RTX Corporation (Raytheon Technologies)
+  location: Remote
+  period: May 2024 – Jul 2024
+  details:
+    - Continued development of a PyQt-based GUI for a high-visibility simulation model application.
+    - Contributed documentation supporting development of a multi-agent LLM application built with AutoGen.
+  order: 2
+
+- id: rtx-2023
+  title: Software Development Intern
+  organization: RTX Corporation (Raytheon Technologies)
+  location: Remote
+  period: May 2023 – Jul 2023
+  details:
+    - Served as lead developer of a PyQt-based graphical user interface for a simulation model application after presenting a prototype to the team's director.
+  order: 3
+
+- id: rtx-2022
+  title: Software Development Intern
+  organization: RTX Corporation (Raytheon Technologies)
+  location: Remote
+  period: May 2022 – Aug 2022
+  details:
+    - Developed, tested, and deployed software features presented to the client.
+    - Trained image classification models for a machine learning competition.
+  order: 4
+
+- id: rutgers
+  title: Undergraduate Researcher (RISE@Rutgers)
+  organization: Rutgers University
+  location: Remote
+  period: May 2021 – Aug 2021
+  details:
+    - Conducted and presented research on classical and quantum communications with Dr. Anand Sarwate and Dr. Emina Soljanin.
+  order: 5
+
+- id: ucf-research
+  title: Undergraduate Researcher
+  organization: University of Central Florida
+  location: Orlando, FL
+  period: Sep 2020 – May 2021
+  details:
+    - Conducted an independent study on quantum computing with Dr. Sharma Thankachan.
+  order: 6
+
+- id: uva
+  title: Undergraduate Researcher
+  organization: University of Virginia
+  location: Remote
+  period: May 2020 – Aug 2020
+  details:
+    - Developed and presented a Boolean satisfiability (DPLL) solver under the advisement of Dr. Matthew Dwyer.
+  order: 7

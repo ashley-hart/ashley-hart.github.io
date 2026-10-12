@@ -1,0 +1,61 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import GameEmbed from '@/components/GameEmbed.astro';
+import Icon from '@/components/Icon.astro';
+
+export async function getStaticPaths() {
+  const games = await getCollection('games');
+  return games.map((game) => ({ params: { slug: game.id }, props: { game } }));
+}
+
+interface Props {
+  game: CollectionEntry<'games'>;
+}
+const { game } = Astro.props;
+const { Content } = await render(game);
+const { data } = game;
+---
+
+<BaseLayout title={data.title} description={data.summary}>
+  <div class="container game-page">
+    <header class="page-header">
+      <p class="eyebrow"><a href="/games/">Games</a></p>
+      <h1>{data.title}</h1>
+      <p>{data.summary}</p>
+    </header>
+
+    <GameEmbed src={data.status === 'playable' ? data.embed : undefined} title={data.title} aspectRatio={data.aspectRatio} />
+
+    <div class="details">
+      <div class="prose"><Content /></div>
+      <aside class="card facts" aria-label="Project details">
+        <dl>
+          <dt>Engine</dt><dd>{data.engine}</dd>
+          <dt>Year</dt><dd>{data.year}</dd>
+          {data.role && <><dt>Role</dt><dd>{data.role}</dd></>}
+        </dl>
+        {data.itch && <a class="btn btn--ghost" href={data.itch}><Icon name="external" /> View on itch.io</a>}
+      </aside>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .game-page { padding-bottom: 3.5rem; }
+  .page-header { padding-inline: 0; }
+  .eyebrow a { color: inherit; text-decoration: none; }
+  .details {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 18rem;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    align-items: start;
+  }
+  .prose { max-width: var(--prose); }
+  dl { display: grid; grid-template-columns: auto 1fr; gap: 0.4rem 1rem; margin: 0 0 1rem; }
+  dt { font-weight: 700; }
+  dd { margin: 0; color: var(--muted); }
+  .facts .btn { width: 100%; }
+  @media (max-width: 48rem) { .details { grid-template-columns: 1fr; } }
+</style>

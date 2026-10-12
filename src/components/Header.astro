@@ -1,0 +1,163 @@
+---
+import { nav, site } from '@/site.config';
+import ThemeToggle from './ThemeToggle.astro';
+import Icon from './Icon.astro';
+
+const path = Astro.url.pathname;
+const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+
+<header class="site-header">
+  <div class="container bar">
+    <a class="brand" href="/">
+      <span class="brand-mark" aria-hidden="true">AH</span>
+      <span class="brand-name">{site.name}</span>
+    </a>
+
+    <nav aria-label="Main">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-list">
+        <span class="when-closed"><Icon name="menu" /></span>
+        <span class="when-open"><Icon name="close" /></span>
+        <span class="visually-hidden">Menu</span>
+      </button>
+      <ul id="nav-list" class="nav-list">
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <ThemeToggle />
+  </div>
+</header>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const header = document.querySelector('.site-header');
+  btn?.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') !== 'true';
+    btn.setAttribute('aria-expanded', String(open));
+    header?.classList.toggle('is-open', open);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && btn?.getAttribute('aria-expanded') === 'true') {
+      btn.setAttribute('aria-expanded', 'false');
+      header?.classList.remove('is-open');
+      btn.focus();
+    }
+  });
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: saturate(1.4) blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: 4.25rem;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-right: auto;
+    color: var(--text);
+    text-decoration: none;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1.15rem;
+  }
+  .brand-mark {
+    display: inline-grid;
+    place-items: center;
+    width: 2.3rem;
+    height: 2.3rem;
+    border-radius: 10px;
+    background: var(--primary);
+    color: var(--primary-contrast);
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    box-shadow: 3px 3px 0 var(--accent);
+  }
+  .nav-list {
+    display: flex;
+    gap: 0.15rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-list a {
+    display: block;
+    padding: 0.45rem 0.75rem;
+    border-radius: 999px;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.97rem;
+  }
+  .nav-list a:hover { background: var(--tint); color: var(--primary); }
+  .nav-list a[aria-current='page'] {
+    background: var(--tint);
+    color: var(--primary);
+    font-weight: 700;
+    box-shadow: inset 0 -2px 0 var(--accent);
+  }
+  .menu-toggle {
+    display: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    place-items: center;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+  }
+  .menu-toggle span { display: inline-grid; }
+  .when-open { display: none !important; }
+  .menu-toggle[aria-expanded='true'] .when-open { display: inline-grid !important; }
+  .menu-toggle[aria-expanded='true'] .when-closed { display: none !important; }
+
+  @media (max-width: 54rem) {
+    .bar { flex-wrap: wrap; }
+    .brand-name { font-size: 1.05rem; }
+    nav { order: 2; }
+    .menu-toggle { display: inline-grid; }
+    .nav-list {
+      display: none;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 100%;
+      flex-direction: column;
+      padding: 0.75rem var(--gutter) 1rem;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .site-header.is-open .nav-list { display: flex; }
+    .nav-list a { padding: 0.7rem 1rem; font-size: 1.05rem; }
+  }
+  /* Without JS, keep the menu usable: show links in a wrapped row. */
+  @media (max-width: 54rem) and (scripting: none) {
+    .menu-toggle { display: none; }
+    nav { order: 3; width: 100%; }
+    .nav-list { display: flex; position: static; flex-direction: row; flex-wrap: wrap; box-shadow: none; border: 0; padding: 0 0 0.5rem; }
+  }
+</style>

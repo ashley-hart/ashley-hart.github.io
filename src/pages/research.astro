@@ -1,0 +1,75 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProjectCard from '@/components/ProjectCard.astro';
+import PublicationList from '@/components/PublicationList.astro';
+import { site } from '@/site.config';
+import { byOrder, getPublications, getVisible, showPlaceholders } from '@/lib/utils';
+
+const projects = (await getVisible('projects')).sort(byOrder);
+const publications = await getPublications();
+const scholar = site.links.find((l) => l.icon === 'scholar')?.url;
+---
+
+<BaseLayout
+  title="Research"
+  description="Research projects and publications by Ashley B. Hart: large language models, procedural content generation, games and simulation, and human-centered AI."
+>
+  <header class="page-header container">
+    <p class="eyebrow">Research</p>
+    <h1>Research &amp; publications</h1>
+    <p>
+      I study artificial intelligence for games and simulations, especially how large language models can be combined
+      with procedural content generation to create worlds for creative and constructive purposes, alongside work in
+      human-centered and explainable AI.
+    </p>
+  </header>
+
+  <section class="container interests" aria-labelledby="interests-h">
+    <h2 id="interests-h" class="visually-hidden">Research interests</h2>
+    <ul class="tags">
+      {site.interests.map((i) => <li class="tag">{i}</li>)}
+    </ul>
+    {
+      showPlaceholders && (
+        <div class="card is-placeholder statement">
+          <h3>[Placeholder] Research statement summary</h3>
+          <p>
+            Add a 2–3 paragraph overview of your research agenda: the core question, your approach, key findings so
+            far, and where you plan to take it as a faculty member (e.g., the first projects for your lab and potential
+            funding directions). Edit this in <code>src/pages/research.astro</code>.
+          </p>
+        </div>
+      )
+    }
+  </section>
+
+  <section class="section" aria-labelledby="projects-h">
+    <div class="container">
+      <p class="eyebrow">Projects</p>
+      <h2 id="projects-h">Research projects</h2>
+      <div class="grid grid-2">
+        {projects.map((p) => <ProjectCard project={p} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tint" id="publications" aria-labelledby="pubs-h">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Publications</p>
+          <h2 id="pubs-h">Publications</h2>
+        </div>
+        {scholar && <a class="more" href={scholar}>Google Scholar →</a>}
+      </div>
+      <p class="muted">Reverse chronological order. My name is shown in bold.</p>
+      <div class="pubs-wrap"><PublicationList publications={publications} groupByYear /></div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .statement { margin-top: 2rem; }
+  .interests { padding-bottom: 2.5rem; }
+  .pubs-wrap { max-width: 56rem; }
+</style>

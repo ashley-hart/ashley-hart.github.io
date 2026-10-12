@@ -1,0 +1,23 @@
+- id: phd
+  title: Ph.D. in Computer Science
+  organization: University of Florida
+  location: Gainesville, FL
+  period: 2022 – Present
+  details:
+    - "Advisor: Dr. Juan E. Gilbert"
+    - Computing for Social Good Lab
+  order: 1
+
+- id: ms
+  title: M.S. in Computer Science
+  organization: University of Florida
+  location: Gainesville, FL
+  period: 2022 – 2025
+  order: 2
+
+- id: bs
+  title: B.S. in Computer Science
+  organization: University of Central Florida
+  location: Orlando, FL
+  period: 2018 – 2022
+  order: 3

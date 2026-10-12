@@ -1,0 +1,68 @@
+---
+import '@/styles/global.css';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { site } from '@/site.config';
+import ogDefault from '@/assets/ashley-hart-headshot.jpg';
+import { getImage } from 'astro:assets';
+
+interface Props {
+  title?: string;
+  description?: string;
+  type?: 'website' | 'article';
+  publishedTime?: Date;
+}
+
+const { title, description = site.description, type = 'website', publishedTime } = Astro.props;
+const fullTitle = title ? `${title} | ${site.name}` : `${site.name} | ${site.title}`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = await getImage({ src: ogDefault, width: 1200, height: 1200, format: 'jpg' });
+const ogImageUrl = new URL(ogImage.src, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={site.name} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title={`${site.name} — Blog`} href="/rss.xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#F5F8FA" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#101923" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:site_name" content={site.name} />
+    {publishedTime && <meta property="article:published_time" content={publishedTime.toISOString()} />}
+    <meta name="twitter:card" content="summary" />
+
+    <!-- Apply the saved theme before first paint to avoid a flash. -->
+    <script is:inline>
+      (() => {
+        let theme;
+        try { theme = localStorage.getItem('theme'); } catch {}
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

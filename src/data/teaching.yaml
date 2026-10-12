@@ -1,0 +1,51 @@
+# kind: teaching | mentoring | outreach
+# Entries with `placeholder: true` only appear in `npm run dev`.
+
+- id: ta-placeholder-1
+  kind: teaching
+  role: "[Teaching Assistant / Instructor of Record]"
+  title: "[Course number — Course title]"
+  organization: University of Florida
+  period: "[Semester Year]"
+  description: "[Responsibilities: lectures, labs, office hours, grading, curriculum design, class size.]"
+  placeholder: true
+  order: 1
+
+- id: guest-lecture-placeholder
+  kind: teaching
+  role: "[Guest Lecturer]"
+  title: "[Lecture topic]"
+  organization: "[Course / Institution]"
+  period: "[Semester Year]"
+  placeholder: true
+  order: 2
+
+- id: nstmf-instem
+  kind: mentoring
+  role: Mentor
+  title: inSTEM Program — National Science & Technology Medals Foundation
+  organization: National Science & Technology Medals Foundation
+  period: Ongoing
+  description: >-
+    Mentor scholars through the NSTMF inSTEM program. Recognized as the
+    foundation's Mentor of the Year in June 2025.
+  url: https://cise.ufl.edu/2025/08/cise-ph-d-student-recognized-with-national-award-for-mentorship/
+  order: 3
+
+- id: uf-mentoring
+  kind: mentoring
+  role: Graduate Mentor
+  title: Student Mentoring at the University of Florida
+  organization: University of Florida
+  period: Ongoing
+  description: Mentor students at UF and beyond.
+  order: 4
+
+- id: ucf-sigact
+  kind: outreach
+  role: Founder, President & Vice President
+  title: Special Interest Group for Algorithms & Computer Theory
+  organization: University of Central Florida
+  period: 2020 – 2022
+  description: Founded and led a student club that taught peers about algorithms and data structures.
+  order: 5

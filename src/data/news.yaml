@@ -1,0 +1,24 @@
+# Short updates for the homepage. date: "YYYY-MM". Newest are shown first.
+
+- id: 2025-iitsec
+  date: "2025-12"
+  text: Co-authored paper on human-AI collaboration for synthetic media detection published in the I/ITSEC 2025 proceedings.
+
+- id: 2025-mentor
+  date: "2025-06"
+  text: Recognized as Mentor of the Year by the National Science & Technology Medals Foundation.
+  url: https://cise.ufl.edu/2025/08/cise-ph-d-student-recognized-with-national-award-for-mentorship/
+
+- id: 2025-aptima
+  date: "2025-05"
+  text: Started a summer AI Engineering internship at Aptima, Inc.
+
+- id: 2024-hfes
+  date: "2024-09"
+  text: Two-step ballot verification paper published in the Proceedings of the HFES Annual Meeting.
+  url: https://journals.sagepub.com/doi/full/10.1177/10711813241279792
+
+- id: placeholder-news
+  date: "2026-09"
+  text: "[Placeholder] Add a recent milestone — e.g., qualifying exam, new paper, talk, or award."
+  placeholder: true

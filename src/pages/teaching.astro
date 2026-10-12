@@ -1,0 +1,69 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { byOrder, getVisible, showPlaceholders } from '@/lib/utils';
+
+const all = (await getVisible('teaching')).sort(byOrder);
+const groups = [
+  { kind: 'teaching', title: 'Teaching experience' },
+  { kind: 'mentoring', title: 'Mentoring' },
+  { kind: 'outreach', title: 'Leadership & outreach' },
+]
+  .map((g) => ({ ...g, items: all.filter((t) => t.data.kind === g.kind) }))
+  .filter((g) => g.items.length > 0);
+---
+
+<BaseLayout
+  title="Teaching & Mentoring"
+  description="Teaching, mentoring, and outreach by Ashley B. Hart, recognized as Mentor of the Year by the National Science & Technology Medals Foundation in 2025."
+>
+  <header class="page-header container">
+    <p class="eyebrow">Teaching &amp; Mentoring</p>
+    <h1>Teaching &amp; mentoring</h1>
+    <p>
+      Mentorship and service are central to my work. I am committed to supporting up-and-coming students and to
+      promoting technical literacy in underserved communities.
+    </p>
+  </header>
+
+  {
+    showPlaceholders && (
+      <section class="section container">
+        <div class="card is-placeholder">
+          <h2>[Placeholder] Teaching philosophy</h2>
+          <p>
+            Summarize your teaching philosophy in a short paragraph or two: how you approach learning, inclusive
+            pedagogy, and the courses you are prepared to teach (e.g., intro programming, AI, game development, HCI).
+            Edit this in <code>src/pages/teaching.astro</code>.
+          </p>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    groups.map((g) => (
+      <section class="section" aria-labelledby={`${g.kind}-h`}>
+        <div class="container">
+          <h2 id={`${g.kind}-h`}>{g.title}</h2>
+          <div class="grid grid-2">
+            {g.items.map(({ data }) => (
+              <article class:list={['card', { 'is-placeholder': data.placeholder }]}>
+                <h3>{data.url ? <a href={data.url}>{data.title}</a> : data.title}</h3>
+                <p class="muted meta">
+                  {data.role} · {data.organization} · {data.period}
+                </p>
+                {data.description && <p>{data.description}</p>}
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    ))
+  }
+</BaseLayout>
+
+<style>
+  .meta { font-size: 0.95rem; }
+  h3 a { color: var(--text); }
+  h3 a:hover { color: var(--primary); }
+</style>
